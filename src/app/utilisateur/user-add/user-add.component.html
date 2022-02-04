@@ -1,0 +1,78 @@
+<form nz-form [formGroup]="userAddForm" (ngSubmit)="submitForm()">
+  <!--username -->
+  <nz-form-item>
+    <nz-form-label
+      [nzSm]="6"
+      [nzXs]="24"
+      nzFor="username"
+      nzRequired
+    >
+      <span>Nom</span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Veuillez saisir votre nom!" nzHasFeedback>
+      <input nz-input id="username" formControlName="username" />
+    </nz-form-control>
+  </nz-form-item>
+  <!--email -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="!" nzHasFeedback>
+      <input nz-input formControlName="email" id="email" />
+    </nz-form-control>
+  </nz-form-item>
+  <!--password -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Le mot de passe</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Veulliez saisir le mot de passe!!">
+      <input
+        nz-input
+        type="password"
+        id="password"
+        formControlName="password"
+        (ngModelChange)="updateConfirmValidator()"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <!--confirm password -->
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>Confirmer</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
+      <input nz-input type="password" formControlName="checkPassword" id="checkPassword" />
+      <ng-template #errorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">Veulliez confirmer le mot de passe!!</ng-container>
+        <ng-container *ngIf="control.hasError('confirm')">
+          Two passwords that you enter is inconsistent!
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <!--confirm role -->
+  <nz-form-item>
+    <nz-form-label
+      [nzSm]="6"
+      [nzXs]="24"
+      nzFor="role"
+      nzRequired
+    >
+      <span>Rôle</span>
+    </nz-form-label>
+    <nz-form-control
+      [nzSm]="14" [nzXs]="24"
+      nzErrorTip="Veuillez saisir votre rôle!"
+      nzHasFeedback
+    >
+      <input nz-input id="role"
+             formControlName="role"
+             placeholder="Saisir 1 pour administrateur ou 0 pour utilisateur"
+      />
+    </nz-form-control>
+  </nz-form-item>
+  <!--add and reset-->
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="20" [nzOffset]="7">
+      <button nz-button (click)="addU()">Ajouter</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button nz-button (click)="resetForm($event)">Réinitialiser</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

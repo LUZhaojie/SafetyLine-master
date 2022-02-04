@@ -1,0 +1,72 @@
+<nz-layout class="layout">
+  <nz-sider nzTheme="light" nzCollapsible [(nzCollapsed)]="isCollapsed" nzBreakpoint="lg" [nzCollapsedWidth]="0">
+    <div class="logo">
+      <img alt="logo" src="assets/safetyline.png">
+    </div>
+    <ul nz-menu nzMode="inline" nzTheme="light" [nzInlineCollapsed]="isCollapsed" >
+      <li nz-submenu nzTitle="Issues" nzIcon="gitlab">
+        <ul>
+          <li nz-menu-item routerLink="/home/issue">Liste</li>
+        </ul>
+      </li>
+      <div [hidden]="showFlag">
+        <li nz-submenu nzTitle="Gestion" nzIcon="user" >
+          <ul >
+            <li nz-menu-item routerLink="/home/utilisateur">Utilisateurs</li>
+            <li nz-menu-item routerLink="/home/utilisateur/add">Ajouter un utilisateur</li>
+          </ul>
+        </li>
+      </div>
+      <li nz-submenu nzTitle="Chiffrage" nzIcon="setting">
+        <ul>
+          <li nz-menu-item routerLink="/home/issue/valid">Chiffrages globaux</li>
+        </ul>
+        <ul>
+          <li nz-menu-item routerLink="/home/issue/user">Chiffrages par Utilisateur</li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div nz-row nzJustify="end">
+        <nz-avatar
+          [nzText] = "username"
+          nzSize="large"
+          style="vertical-align: bottom;"></nz-avatar>
+        <!--
+        <div nz-col nzSpan="2">
+          <nz-avatar nzIcon="user" style="background-color:#fcfcfc;"></nz-avatar>
+          <a
+            nz-popconfirm
+            nzPopconfirmTitle="Are you sure to reset all issues?"
+            nzOkText="Ok"
+            nzCancelText="Cancel"
+            (nzOnConfirm)="Reset()"
+            href="#" > &nbsp;
+            <i nz-icon nzType="logout" nzTheme="outline"></i>&nbsp;Reset
+          </a>
+        </div>
+        -->
+        <div nz-col nzSpan="4">
+          <nz-avatar nzIcon="user" style="background-color:#ffffff;"></nz-avatar>
+          <a
+            nz-popconfirm
+            nzPopconfirmTitle="Vous êtes sûr de vous déconnecter?"
+            nzOkText="Confirmer-"
+            nzCancelText="Annuler"
+            (nzOnConfirm)="logout()"
+            href="#" > &nbsp;
+            <i nz-icon nzType="logout" nzTheme="outline"></i>&nbsp;Se déconnecter
+          </a>
+        </div>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <nz-footer>Projet Chiffrage @SafetyLine</nz-footer>
+  </nz-layout>
+</nz-layout>

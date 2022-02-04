@@ -1,0 +1,39 @@
+<nz-table #listUser [nzData]="listOfUser" [nzFrontPagination]="true"
+          [nzPageSize]="pageSize" [nzPageIndex]="curPage" [nzLoading]="false">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Nom</th>
+    <th>Mail</th>
+    <th>Rôle</th>
+    <th>Opération</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of listUser.data; let i = index; trackBy: trackByUserId">
+    <td>{{ user.id }}</td>
+    <td>{{ user.username }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.role === 1 ? 'Administrateur' : 'Utilisateur'}}</td>
+    <td>
+      <a
+        nz-popconfirm
+        nzPopconfirmTitle="Vous êtes sûr?"
+        nzOkText="Valider"
+        nzCancelText="Annuler"
+        (nzOnConfirm)="handleDel(user.id)"
+        (nzOnCancel)="handleDelCan()"
+      >supprimer</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a
+        nz-popconfirm
+        nzPopconfirmTitle="Vous êtes sûr?"
+        nzOkText="Valider"
+        nzCancelText="Annuler"
+        (nzOnConfirm)="handleChange(user.id)"
+        (nzOnCancel)="handleRoleCan()"
+      >changer rôle</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
